@@ -17,30 +17,20 @@ module Api
       def update
         user = User.find(update_params[:id])
         authorize! :update, user, :message => "Unable to update users."
-        user_state = nil
-        if update_params[:state]
-          user_state = User.states[:active]
-        else
-          user_state = User.states[:inactive]
-        end
-        
 
         user.update(
           first_name: update_params[:first_name],
           last_name: update_params[:first_name],
-          birthday: update_params[:birthday],
-          whatsapp: update_params[:whatsapp],
-          personal_email: update_params[:personal_email],
-          trello_user_name: update_params[:trello_user_name],
-          github_user_name: update_params[:github_user_name],
-          slack_user_name: update_params[:slack_user_name],
-          kw_email: update_params[:kw_email],
-          bitbucket_user_name: update_params[:bitbucket_user_name],
-          country: update_params[:country],
-          ends_at: update_params[:ends_at],
-          technologies: params[:data][:attributes][:technologies],
-          state: user_state
+          email: update_params[:email]
         )
+
+        if update_params[:password]
+          user.update(
+            password: update_params[:password],
+            password_confirmation: update_params[:password],
+          )
+          debugger
+        end
       end
 
       def get_role
@@ -95,7 +85,7 @@ module Api
       def update_params
         params.require(:data)
           .require(:attributes)
-          .permit([:id, :first_name, :email, :birthday, :whatsapp, :last_name, :personal_email, :kw_email, :trello_user_name, :slack_user_name, :trello_user_name, :github_user_name, :bitbucket_user_name, :country, :ends_at, :technologies, :state])
+          .permit([:id, :first_name, :email, :password, :last_name])
       end
 
       def delete_params

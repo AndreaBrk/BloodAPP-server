@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::API
 
   include DeviseTokenAuth::Concerns::SetUserByToken
-
-
-  attr_reader :current_user
+  
   include CanCan::ControllerAdditions
   
   def authenticate_request!

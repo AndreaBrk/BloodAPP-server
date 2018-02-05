@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :donation_events, only: [:index, :create, :destroy, :update] do
         collection do
           get 'index_owner'
+          get 'change_status'
         end
       end   
 
