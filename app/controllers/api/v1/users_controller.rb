@@ -50,7 +50,9 @@ module Api
         })
         @user.add_role "user"
         if !@user.save
-          render json: {errors: @user.errors.messages}, status: 500
+          render json: {errors: @user.errors.messages}, status: 400
+        else
+          @user.send_confirmation_instructions
         end
       end
 
