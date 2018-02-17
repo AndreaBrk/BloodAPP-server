@@ -47,10 +47,10 @@ module Api
           password: create_params[:password],
           password_confirmation: create_params[:password_confirmation]
         })
-        @user.add_role "user"
         if !@user.save
           render json: {errors: @user.errors.messages}, status: 400
         else
+          @user.add_role "user"
           @user.send_confirmation_instructions
         end
       end
