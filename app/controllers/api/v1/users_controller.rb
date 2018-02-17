@@ -40,7 +40,6 @@ module Api
       end
 
       def create
-        authorize! :create, User, :message => "Unable to create users."
         @user = User.new({
           first_name: create_params[:first_name],
           last_name: create_params[:last_name],
