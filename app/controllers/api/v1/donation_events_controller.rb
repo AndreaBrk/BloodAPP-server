@@ -4,7 +4,7 @@ module Api
 
       def destroy
         authorize! :delete, DonationEvent, :message => "Unable to delete users."
-        @donations_events = DonationEvent.find(params[:id])
+        @donations_event  s = DonationEvent.find(params[:id])
         @donations_events.destroy
       end
 
@@ -66,6 +66,8 @@ module Api
         })
         if !@donations_event.save
           render json: {errors: @donations_event.errors.messages}, status: 400
+        else
+          render json: @donation_event
         end
       end
 
