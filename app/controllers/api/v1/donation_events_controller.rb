@@ -67,7 +67,7 @@ module Api
         if !@donations_event.save
           render json: {errors: @donations_event.errors.messages}, status: 400
         else
-          render json: @donation_event
+          render json: @donations_event
         end
       end
 
