@@ -36,6 +36,7 @@ Rails.application.configure do
     authentication:       'plain',
     enable_starttls_auto: true
   }
+  config.action_mailer.default_url_options = { host: 'avbapp.herokuapp.com' }
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
