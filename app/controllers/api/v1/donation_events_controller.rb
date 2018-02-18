@@ -3,7 +3,7 @@ module Api
     class DonationEventsController < ApplicationController
 
       def destroy
-        authorize! :destroy , DonationEvent, :message => "Unable to delete users."
+        authorize! :destroy, DonationEvent, :message => "Unable to delete users."
         @donations_events = DonationEvent.find(params[:id])
         @donations_events.destroy
       end
