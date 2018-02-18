@@ -8,8 +8,8 @@ class Ability
       if user.has_role?(:admin)
         can :manage, :all
       elsif user.has_role?(:user)
-        can :manage, DonationEvents.where(user_id: user.id)
-        can :create, DonationEvents.all
+        can :manage, DonationEvent.where(user_id: user.id)
+        can :create, DonationEvent.all
       else
         can :create, User
       end
