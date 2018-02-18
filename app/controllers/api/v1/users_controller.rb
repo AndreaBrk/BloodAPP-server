@@ -72,7 +72,7 @@ module Api
         user = User.where(confirmation_token: params[:token]).first
         if user
           user.confirm
-          redirect_to 'https://avbapp.herokuapp.com/login'
+          redirect_to 'https://avbapp.herokuapp.com/login', notice: "Gracias por confirmar tu cuanta!"
         else
           render text: 'user not found'
         end
