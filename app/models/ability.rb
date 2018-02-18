@@ -9,9 +9,9 @@ class Ability
         can :manage, :all
       elsif user.has_role?(:user)
         can :manage, DonationEvents.where(user_id: user.id)
-        can :create, DonationEvents
+        can :create, DonationEvents.all
       else
-        can :user, DonationEvents
+        can :create, User
       end
     
     # The first argument to `can` is the action you are giving the user
