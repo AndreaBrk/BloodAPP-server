@@ -11,6 +11,7 @@ Rails.application.routes.draw do
           post 'get_role'
           post 'reset_password'
           post 'password'
+          get 'confirm_token'
         end
       end   
 

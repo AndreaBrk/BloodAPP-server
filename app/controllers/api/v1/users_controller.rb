@@ -68,6 +68,16 @@ module Api
         end
       end
 
+      def confirm_token
+        user = User.where(confirmation_token: params[:token]).first
+        if user
+          user.confirm
+          redirect_to 'avbapp.heroku.com/login'
+        else
+          render text: 'user not found'
+        end
+      end
+
 
       private
 
