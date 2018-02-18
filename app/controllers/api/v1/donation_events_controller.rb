@@ -54,7 +54,7 @@ module Api
       end
 
       def create
-        authorize! :create, User, :message => "Unable to create users."
+        authorize! :create, DonationEvent, :message => "Unable to create users."
         @donations_event = DonationEvent.new({
           name: create_params[:name],
           size: create_params[:size],
