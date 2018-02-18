@@ -67,7 +67,12 @@ module Api
         if !@donations_event.save
           render json: {errors: @donations_event.errors.messages}, status: 400
         else
-          render json: @donations_event
+          lat = params[:posLat].to_f
+          lng = params[:posLng].to_f
+          @donations_events = DonationEvent.select("donation_events.*, ('(#{lng},#{lat})'::point <@> point(lng,lat)) as distance").order('distance')
+          @donations_events = @donations_events.where(status: DonationEvent.statuses[:open])
+          @donations_events = @donations_events.where(blood_type: params[:blood_type]) if params[:blood_type]
+          render json: @donations_events
         end
       end
 
