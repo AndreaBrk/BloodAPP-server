@@ -57,7 +57,7 @@ module Api
 
       def reset_password
         user = User.find_by(email: create_params[:email])
-        ResetPasswordMailer.send_confirmation_instructions(user)
+        ResetPasswordMailer.reset_password(user).deliver_now
         redirect_to root_url, notice: "You are going to receive an email with the new passsword"
       end
 
