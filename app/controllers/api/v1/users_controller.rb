@@ -8,7 +8,7 @@ module Api
 
         user.update(
           first_name: update_params[:first_name],
-          last_name: update_params[:first_name],
+          last_name: update_params[:last_name],
           email: update_params[:email]
         )
 
