@@ -58,7 +58,7 @@ module Api
       def reset_password
         user = User.find_by(email: create_params[:email])
         ResetPasswordMailer.reset_password(user).deliver_now
-        redirect_to root_url, notice: "You are going to receive an email with the new passsword"
+        redirect_to 'https://avbapp.herokuapp.com/login', notice: "You are going to receive an email with the new passsword"
       end
 
       def password
