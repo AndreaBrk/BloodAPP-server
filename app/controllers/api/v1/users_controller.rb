@@ -57,7 +57,7 @@ module Api
 
       def reset_password
         user = User.find_by(email: create_params[:email])
-        user.update_attributes(password: 'user1234', password_confirmation: 'user1234')
+        user.update_attributes(password:  params[:token], password_confirmation:  params[:token])
       end
 
       def password
