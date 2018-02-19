@@ -8,6 +8,8 @@ class ResetPasswordMailer < ApplicationMailer
   def reset_password(user)
     @user = user
     @new_password = SecureRandom.hex(10)
+    @user.password = @user.password_confirmation = @new_password
+    @user.save
     mail to: user.email, subject: "Password has ben restablished"
   end
 end
