@@ -20,21 +20,6 @@ module Api
         })
       end
 
-      def update
-        authorize! :update, DonationEvent, :message => "Unable to read users."
-        @donations_event = DonationEvent.find(params[:id])
-        @donations_event.update({
-          name: create_params[:name],
-          size: create_params[:size],
-          blood_type: create_params[:type],
-          lat: create_params[:lat],
-          lng: create_params[:lng],
-        })
-        if !@donations_event.save
-          render json: {errors: @donations_event.errors.messages}, status: 400
-        end
-      end
-
       def index
         authorize! :read, DonationEvent, :message => "Unable to read users."
         lat = params[:posLat].to_f

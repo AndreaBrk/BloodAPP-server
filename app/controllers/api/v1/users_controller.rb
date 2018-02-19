@@ -32,12 +32,6 @@ module Api
         end
       end
 
-      def get_role
-        user = User.find(get_role_params[:id])
-        @role = user.roles
-        render json: @role.to_json
-      end
-
       def create
         @user = User.new({
           first_name: create_params[:first_name],
@@ -60,13 +54,6 @@ module Api
         redirect_to 'https://avbapp.herokuapp.com/login', notice: "You are going to receive an email with the new passsword"
       end
 
-      def password
-        user = current_user
-        authorize! :manage, user, :message => "Unable to manage users."
-        if !user.update_attributes(password: password_params[:password], password_confirmation: password_params[:password_confirmation])
-          render json: {errors: user.errors.messages}, status: 400
-        end
-      end
 
       def confirm_token
         user = User.where(confirmation_token: params[:token]).first
@@ -80,12 +67,6 @@ module Api
 
 
       private
-
-      def get_role_params
-        params.require(:data)
-          .require(:attributes)
-          .permit([:id])
-      end
 
       def create_params
         params.require(:data)
@@ -103,12 +84,6 @@ module Api
         params.require(:data)
           .require(:attributes)
           .permit([:id])
-      end
-
-      def password_params
-        params.require(:data)
-          .require(:attributes)
-          .permit([:password, :password_confirmation])
       end
 
     end

@@ -8,14 +8,12 @@ Rails.application.routes.draw do
 
       resources :users, only: [:index, :create, :destroy, :update] do
         collection do
-          post 'get_role'
           post 'reset_password'
-          post 'password'
           get 'confirm_token'
         end
       end   
 
-      resources :donation_events, only: [:index, :create, :destroy, :update] do
+      resources :donation_events, only: [:index, :create, :destroy] do
         collection do
           get 'index_owner'
           get 'change_status'
