@@ -22,7 +22,6 @@ module Api
 
       def update
         authorize! :update, DonationEvent, :message => "Unable to read users."
-        debugger
         @donations_event = DonationEvent.find(params[:id])
         @donations_event.update({
           name: create_params[:name],

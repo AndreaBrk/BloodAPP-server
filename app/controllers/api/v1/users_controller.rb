@@ -29,7 +29,6 @@ module Api
             password: update_params[:password],
             password_confirmation: update_params[:password],
           )
-          debugger
         end
       end
 
