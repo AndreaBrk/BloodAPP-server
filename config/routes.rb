@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json, path: '/' } do
 
 
-      resources :users, only: [:index, :create, :destroy, :update] do
+      resources :users, only: [:index, :create, :destroy, :update, :show] do
         collection do
           post 'reset_password'
           get 'confirm_token'

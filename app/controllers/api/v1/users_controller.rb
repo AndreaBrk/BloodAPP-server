@@ -1,18 +1,6 @@
 module Api
   module V1
     class UsersController < ApplicationController
-
-      def index
-        authorize! :read, User, :message => "Unable to read users."
-        @users = User.all
-        render json: @users, each_serializer: UserSerializer
-      end
-
-      def destroy
-        user = User.find(delete_params[:id])
-        authorize! :delete, user, :message => "Unable to delete users."
-        user.delete
-      end
       
       def update
         user = User.find(update_params[:id])
@@ -63,6 +51,10 @@ module Api
         else
           render text: 'user not found'
         end
+      end
+
+      def show
+        render json: current_user
       end
 
 
