@@ -54,7 +54,7 @@ module Api
       end
 
       def show
-        render json: current_user
+        render json: User.find(params[:id])
       end
 
 
