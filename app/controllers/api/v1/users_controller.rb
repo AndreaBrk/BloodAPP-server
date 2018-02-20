@@ -57,7 +57,7 @@ module Api
       end
 
       def get_role
-        user = User.find(get_role_params[:id])
+        user = User.find(params[:id])
         @role = user.roles
         render json: @role.to_json
       end
