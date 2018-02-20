@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         collection do
           post 'reset_password'
           get 'confirm_token'
+          get 'get_role'
         end
       end   
 

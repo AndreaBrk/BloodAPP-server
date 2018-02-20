@@ -19,6 +19,12 @@ module Api
         end
       end
 
+      def get_role
+        user = User.find(get_role_params[:id])
+        @role = user.roles
+        render json: @role.to_json
+      end
+
       def create
         @user = User.new({
           first_name: create_params[:first_name],
