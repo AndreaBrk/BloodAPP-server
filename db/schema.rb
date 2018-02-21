@@ -14,9 +14,6 @@ ActiveRecord::Schema.define(version: 20180129205826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
-  enable_extension "cube"
-  enable_extension "earthdistance"
 
   create_table "donation_events", force: :cascade do |t|
     t.string "name"
@@ -24,8 +21,8 @@ ActiveRecord::Schema.define(version: 20180129205826) do
     t.string "blood_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "lat", precision: 8, scale: 2
-    t.decimal "lng", precision: 8, scale: 2
+    t.decimal "lat", precision: 14, scale: 14
+    t.decimal "lng", precision: 14, scale: 14
     t.bigint "user_id"
     t.integer "status", default: 0
     t.text "description"
@@ -41,13 +38,6 @@ ActiveRecord::Schema.define(version: 20180129205826) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
-  end
-
-  create_table "spatial_ref_sys", primary_key: "srid", id: :integer, default: nil, force: :cascade do |t|
-    t.string "auth_name", limit: 256
-    t.integer "auth_srid"
-    t.string "srtext", limit: 2048
-    t.string "proj4text", limit: 2048
   end
 
   create_table "users", force: :cascade do |t|
